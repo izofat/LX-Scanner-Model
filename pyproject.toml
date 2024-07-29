@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "lx-scanner-model"
+version = "0.1.0"
+description = ""
+authors = ["Gorkem Kacar <g.kacar@digitastic.app>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = "^2.4.0+cpu"
+torchvision = "^0.19.0+cpu"
+torchaudio = "^2.4.0+cpu"
+easyocr = "^1.7.1"
+mypy = "^1.11.0"
+autoflake = "^2.3.1"
+isort = "^5.13.2"
+black = "^24.4.2"
+pylint = "^3.2.6"
+bandit = "^1.7.9"
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
