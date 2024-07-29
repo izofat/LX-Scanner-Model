@@ -2,7 +2,7 @@ SHELL := /bin/bash
 PROJECT_NAME := "LX-Scanner-Model"
 
 install:
-    @poetry install
+	@poetry install
 	@poetry run mypy --install-types
 
 format:
