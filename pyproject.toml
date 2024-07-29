@@ -2,7 +2,7 @@
 name = "lx-scanner-model"
 version = "0.1.0"
 description = ""
-authors = ["Gorkem Kacar <g.kacar@digitastic.app>"]
+authors = ["Gorkem Kacar <gorkemkacar12@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
