@@ -3,3 +3,5 @@
 .secret/
 # -------
 
+# user files
+config.toml
