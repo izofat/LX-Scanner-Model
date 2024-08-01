@@ -50,9 +50,9 @@ class OpticalCharacterRecognition(easyocr.Reader):
         result[2] ==> confidence of the model
         """
         self.result = self.readtext(self.image)
-        self.parse_result()
+        self.__parse_result()
 
-    def parse_result(self):
+    def __parse_result(self):
         if not self.result:
             return None
 

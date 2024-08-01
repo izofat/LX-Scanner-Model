@@ -15,8 +15,8 @@ class OCROutput(BaseModel):
 
 
 class MarkerLines(BaseModel):
-    top_left: List[Union[int, float]]
-    bottom_right: List[Union[int, float]]
+    top_left: List[int]
+    bottom_right: List[int]
     text: str
 
 
