@@ -1,6 +1,8 @@
 # hidden files
 .idea/
 .secret/
+*__pycache__/
+*.mypy_cache/
 # -------
 
 # user files

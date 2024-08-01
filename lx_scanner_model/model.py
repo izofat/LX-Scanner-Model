@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union
+from typing import List, Union
 
 from pydantic import BaseModel
 
@@ -7,20 +7,12 @@ from pydantic import BaseModel
 
 
 class OCROutput(BaseModel):
-    confidence: float
+    confidence: List[Union[float, int]]
     image_size: int
-    image: Union[bytes, Path]
-
-
-class OCROutputSingleLine(OCROutput):
-    text: str
-    text_location: tuple[int, int, int, int]
-
-
-class OCROutputMultipleLines(OCROutput):
-    text: list[str]
-    text_location: list[tuple[int, int, int, int]]
+    image: Union[bytes, Path, str]
+    text: List[str]
+    locations: List[List[List[Union[int, float]]]]
 
 
 class FinalData(BaseModel):
-    ocr_output: Union[OCROutputSingleLine, OCROutputMultipleLines]
+    ocr_output: OCROutput
