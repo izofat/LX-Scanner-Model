@@ -18,6 +18,8 @@ black = "^24.4.2"
 pylint = "^3.2.6"
 bandit = "^1.7.9"
 pydantic = "^2.8.2"
+opencv-python-headless = "^4.10.0.84"
+matplotlib = "^3.9.1"
 
 [[tool.poetry.source]]
 name = "pytorch"

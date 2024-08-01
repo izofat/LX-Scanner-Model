@@ -3,11 +3,12 @@ from typing import Union
 
 import easyocr
 
+from ..displayers.marker import Marker
 from ..model import OCROutput
 
 
 class OpticalCharacterRecognition(easyocr.Reader):
-    def __init__(self, image: Path, lang_list="en", save_image=True):
+    def __init__(self, image: Union[str, Path], lang_list="en", save_image=True):
         if isinstance(lang_list, str):
             lang_list = [lang_list]
 
@@ -71,3 +72,7 @@ class OpticalCharacterRecognition(easyocr.Reader):
             text=self._words,
             locations=self._locations,
         )
+
+    def display_text_locations(self):
+        marker = Marker(self.image, self.locations, self._words)
+        marker.display()
