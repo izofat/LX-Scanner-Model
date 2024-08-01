@@ -22,6 +22,22 @@ class OpticalCharacterRecognition(easyocr.Reader):
         self._confidence_of_words = None
         self._output = None
 
+    @property
+    def locations(self):
+        return self._locations
+
+    @property
+    def words(self):
+        return self._words
+
+    @property
+    def confidence_of_words(self):
+        return self._confidence_of_words
+
+    @property
+    def output(self) -> Union[OCROutput, None]:
+        return self._output
+
     def read_text(self):
         """
         Reads text from the pretrained ocr model
@@ -55,19 +71,3 @@ class OpticalCharacterRecognition(easyocr.Reader):
             text=self._words,
             locations=self._locations,
         )
-
-    @property
-    def locations(self):
-        return self._locations
-
-    @property
-    def words(self):
-        return self._words
-
-    @property
-    def confidence_of_words(self):
-        return self._confidence_of_words
-
-    @property
-    def output(self) -> Union[OCROutput, None]:
-        return self._output
