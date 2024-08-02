@@ -2,8 +2,12 @@ from typing import List, Optional
 
 import cv2
 import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 from ..model import MarkerLines
+from ..settings import DEBUG
 
 
 class Marker:
@@ -19,7 +23,8 @@ class Marker:
         lines = self.__split_locations(self.locations, self.text)
         loaded_image = cv2.imread(self.image)
         self.__mark_image(lines, loaded_image)
-        self.__display_image(loaded_image)
+
+        return self.__display_image(loaded_image)
 
     @staticmethod
     def __split_locations(locations, text) -> Optional[List[MarkerLines]]:
@@ -66,7 +71,23 @@ class Marker:
         """
         Displays the marked image
         """
-        plt.figure(figsize=(10, 10))
-        plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-        plt.axis("off")
-        plt.show()
+        fig = Figure(figsize=(10, 10))
+        canvas = FigureCanvas(fig)
+        ax = fig.add_subplot(111)
+        ax.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        ax.axis("off")
+        canvas.draw()
+
+        image_from_plot = np.frombuffer(canvas.tostring_rgb(), dtype="uint8")
+        image_from_plot = image_from_plot.reshape(
+            fig.canvas.get_width_height()[::-1] + (3,)
+        )
+
+        if DEBUG:
+            fig.savefig("../.secret/plot.png")
+            plt.figure(figsize=(10, 10))
+            plt.imshow(image_from_plot)
+            plt.axis("off")
+            plt.show()
+
+        return image_from_plot

@@ -20,6 +20,7 @@ bandit = "^1.7.9"
 pydantic = "^2.8.2"
 opencv-python-headless = "^4.10.0.84"
 matplotlib = "^3.9.1"
+toml = "^0.10.2"
 
 [[tool.poetry.source]]
 name = "pytorch"

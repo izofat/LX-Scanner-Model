@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Union
 
-import easyocr
+import easyocr  # type: ignore
 
 from ..displayers.marker import Marker
 from ..model import OCROutput
@@ -54,7 +54,7 @@ class OpticalCharacterRecognition(easyocr.Reader):
 
     def __parse_result(self):
         if not self.result:
-            return None
+            return
 
         self._locations = []
         self._words = []
@@ -75,4 +75,5 @@ class OpticalCharacterRecognition(easyocr.Reader):
 
     def display_text_locations(self):
         marker = Marker(self.image, self.locations, self._words)
-        marker.display()
+        last_image = marker.display()
+        return last_image

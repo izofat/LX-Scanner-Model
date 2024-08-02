@@ -5,5 +5,3 @@
 *.mypy_cache/
 # -------
 
-# user files
-config.toml
