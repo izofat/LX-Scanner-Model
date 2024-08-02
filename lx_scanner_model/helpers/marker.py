@@ -15,16 +15,17 @@ class Marker:
         self.image = image
         self.locations = locations
         self.text = text
+        self.marked_image = None
 
-    def display(self):
+        self.start_marking()
+
+    def start_marking(self):
         """
         This is the main function that displays the image with the marked locations
         """
         lines = self.__split_locations(self.locations, self.text)
         loaded_image = cv2.imread(self.image)
         self.__mark_image(lines, loaded_image)
-
-        return self.__display_image(loaded_image)
 
     @staticmethod
     def __split_locations(locations, text) -> Optional[List[MarkerLines]]:
@@ -46,8 +47,7 @@ class Marker:
 
         return lines
 
-    @staticmethod
-    def __mark_image(lines: List[MarkerLines], image):
+    def __mark_image(self, lines: List[MarkerLines], image):
         """
         Marks the image with the lines
         """
@@ -56,21 +56,7 @@ class Marker:
 
         for line in lines:
             cv2.rectangle(image, line.top_left, line.bottom_right, (0, 255, 0), 2)
-            cv2.putText(
-                image,
-                line.text,
-                (line.top_left[0], line.top_left[1] - 20),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (0, 255, 0),
-                1,
-            )
 
-    @staticmethod
-    def __display_image(image):
-        """
-        Displays the marked image
-        """
         fig = Figure(figsize=(10, 10))
         canvas = FigureCanvas(fig)
         ax = fig.add_subplot(111)
@@ -83,11 +69,17 @@ class Marker:
             fig.canvas.get_width_height()[::-1] + (3,)
         )
 
+        self.marked_image = image_from_plot
+
         if DEBUG:
             fig.savefig("../.secret/plot.png")
-            plt.figure(figsize=(10, 10))
-            plt.imshow(image_from_plot)
-            plt.axis("off")
-            plt.show()
 
-        return image_from_plot
+    def display_image(self):
+        """
+        Displays the marked image
+        """
+
+        plt.figure(figsize=(10, 10))
+        plt.imshow(self.marked_image)
+        plt.axis("off")
+        plt.show()
