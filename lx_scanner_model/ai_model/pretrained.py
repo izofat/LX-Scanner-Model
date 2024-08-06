@@ -3,12 +3,14 @@ from typing import Union
 
 import easyocr  # type: ignore
 
-from ..helpers.image import ImageHelper
-from ..helpers.marker import Marker
-from ..model import OCROutput
+from lx_scanner_model.helpers.image import ImageHelper
+from lx_scanner_model.helpers.marker import Marker
+from lx_scanner_model.scanner_model.model import OCROutput
 
 
-class OpticalCharacterRecognition(easyocr.Reader):
+class OpticalCharacterRecognition(
+    easyocr.Reader
+):  # pylint: disable=too-many-instance-attributes
     image_helper: ImageHelper
 
     def __init__(self, image: Union[str, Path], lang_list="en", save_image=True):

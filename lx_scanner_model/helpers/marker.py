@@ -6,8 +6,8 @@ import numpy as np
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-from ..model import MarkerLines
-from ..settings import DEBUG
+from lx_scanner_model.scanner_model.model import MarkerLines
+from lx_scanner_model.settings import DEBUG
 
 
 class Marker:
@@ -52,7 +52,7 @@ class Marker:
         Marks the image with the lines
         """
         if not lines:
-            return None
+            return
 
         for line in lines:
             cv2.rectangle(image, line.top_left, line.bottom_right, (0, 255, 0), 2)
