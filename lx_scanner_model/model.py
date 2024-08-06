@@ -1,6 +1,6 @@
-from pathlib import Path
 from typing import List, Tuple, Union
 
+from numpy import ndarray
 from pydantic import BaseModel
 
 
@@ -11,9 +11,14 @@ class OCROutput(BaseModel):
 
     confidence: List[Union[float, int]]
     image_size: Tuple[int, int]
-    image: Union[Path, str]
+    image: ndarray
     text: List[str]
     locations: List[List[List[Union[int, float]]]]
+
+    class Config:  # pylint: disable=too-few-public-methods
+        """Added for numpy array"""
+
+        arbitrary_types_allowed = True
 
 
 class MarkerLines(BaseModel):
