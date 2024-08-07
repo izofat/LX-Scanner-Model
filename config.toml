@@ -1,1 +1,19 @@
 debug = false
+
+[rabbitmq]
+
+[rabbitmq.dev]
+username = "guest"
+password = "guest"
+host = "localhost"
+port = 5672
+vhost = "/"
+queue = "queue"
+
+[rabbitmq.prod]
+username = "guest"
+password = "guest"
+host = "localhost"
+port = 5672
+vhost = "/"
+queue = "queue"

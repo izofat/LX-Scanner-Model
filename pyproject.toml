@@ -23,6 +23,8 @@ matplotlib = "^3.9.1"
 toml = "^0.10.2"
 pillow = "^10.4.0"
 pika = "^1.3.2"
+pydash = "^8.0.3"
+types-pika = "^1.2.0b1"
 
 [[tool.poetry.source]]
 name = "pytorch"
