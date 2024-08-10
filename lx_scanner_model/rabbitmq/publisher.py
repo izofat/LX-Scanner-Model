@@ -16,3 +16,7 @@ class RabbitMQPublisher:
     def publish_message(self, message):
         """publish message to RabbitMQ server"""
         self.connection.publish_message(message)
+
+    def close(self):
+        """close connection to RabbitMQ server"""
+        self.connection.close()
