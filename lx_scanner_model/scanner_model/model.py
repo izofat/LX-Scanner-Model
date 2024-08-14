@@ -1,6 +1,6 @@
+from pathlib import Path
 from typing import List, Tuple, Union
 
-from numpy import ndarray
 from pydantic import BaseModel
 
 
@@ -11,7 +11,7 @@ class OCROutput(BaseModel):
 
     confidence: List[Union[float, int]]
     image_size: Tuple[int, int]
-    image: ndarray
+    image: Union[str, Path]
     text: List[str]
     locations: List[List[List[Union[int, float]]]]
 
@@ -29,7 +29,3 @@ class MarkerLines(BaseModel):
     top_left: List[int]
     bottom_right: List[int]
     text: str
-
-
-# class FinalData(BaseModel):
-#     ocr_output: OCROutput

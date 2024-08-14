@@ -16,7 +16,11 @@ class ImageHelper:
         return image.size
 
     def display_image(self):
-        self.marker.display_image()
+        """
+        Displays the marked image
+        """
+        with Image.open(self.marker.image) as img:
+            img.show()
 
     @property
     def marked_image(self):

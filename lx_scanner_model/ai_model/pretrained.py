@@ -13,7 +13,7 @@ class OpticalCharacterRecognition(
 ):  # pylint: disable=too-many-instance-attributes
     image_helper: ImageHelper
 
-    def __init__(self, image: Union[str, Path], lang_list="en", save_image=True):
+    def __init__(self, image: Union[str, Path], lang_list="en"):
         if isinstance(lang_list, str):
             lang_list = [lang_list]
 
@@ -21,7 +21,6 @@ class OpticalCharacterRecognition(
 
         self.lang_list = lang_list
         self.image = image
-        self.save_image = save_image
         self.result = None
         self._locations = None
         self._words = None
@@ -57,7 +56,9 @@ class OpticalCharacterRecognition(
             self._words.append(line[1])
             self._confidence_of_lines.append(line[2])
 
-        self.image_helper = ImageHelper(Marker(self.image, self.locations, self._words))
+        self.image_helper = ImageHelper(
+            Marker(self.image, self._locations, self._words)
+        )
 
     @property
     def locations(self):

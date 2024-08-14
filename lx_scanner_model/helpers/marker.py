@@ -1,21 +1,20 @@
-from typing import List, Optional
+from pathlib import Path
+from typing import List, Optional, Union
 
 import cv2
-import matplotlib.pyplot as plt
-import numpy as np
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 from lx_scanner_model.scanner_model.model import MarkerLines
-from lx_scanner_model.settings import DEBUG
+from lx_scanner_model.settings import DEBUG, OUTPUT_DIR
 
 
-class Marker:
-    def __init__(self, image, locations, text):
+class Marker:  # pylint: disable=too-few-public-methods
+    def __init__(self, image: Union[str, Path], locations, text):
         self.image = image
         self.locations = locations
         self.text = text
-        self.marked_image = None
+        self.marked_image: Optional[Union[str, Path]] = None
 
         self.start_marking()
 
@@ -64,22 +63,11 @@ class Marker:
         ax.axis("off")
         canvas.draw()
 
-        image_from_plot = np.frombuffer(canvas.tostring_rgb(), dtype="uint8")
-        image_from_plot = image_from_plot.reshape(
-            fig.canvas.get_width_height()[::-1] + (3,)
-        )
-
-        self.marked_image = image_from_plot
-
         if DEBUG:
-            fig.savefig("../.secret/plot.png")
+            output_file = f"{OUTPUT_DIR}/test.jpg"
+        else:
+            output_file = ...  # type: ignore
+            # TODO instead of marked image get next id from db and save it as marked_image_{id}.jpg
 
-    def display_image(self):
-        """
-        Displays the marked image
-        """
-
-        plt.figure(figsize=(10, 10))
-        plt.imshow(self.marked_image)
-        plt.axis("off")
-        plt.show()
+        self.marked_image = output_file
+        fig.savefig(output_file)

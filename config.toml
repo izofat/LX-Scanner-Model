@@ -1,4 +1,5 @@
-debug = false
+debug = true
+#output_file_path = "/srv/LX-Scanner/output"
 
 [rabbitmq]
 

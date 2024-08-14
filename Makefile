@@ -19,3 +19,6 @@ lint:
 	@poetry run pylint lx_scanner_model
 	@poetry run pylint tests
 	@poetry run bandit -r lx_scanner_model
+
+launch:
+	@poetry run lx-scanner-model
