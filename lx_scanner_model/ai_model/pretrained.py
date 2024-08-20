@@ -69,7 +69,7 @@ class OpticalCharacterRecognition(
         return self._words
 
     @property
-    def confidence_of_words(self):
+    def confidence_of_lines(self):
         return self._confidence_of_lines
 
     @property

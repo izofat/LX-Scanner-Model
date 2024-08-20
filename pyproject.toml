@@ -7,6 +7,7 @@ readme = "README.md"
 
 [tool.poetry.scripts]
 lx-scanner-model = "lx_scanner_model.__main__:main"
+lx-scanner-model-test = "tests.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"

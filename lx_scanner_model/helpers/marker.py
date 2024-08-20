@@ -71,3 +71,4 @@ class Marker:  # pylint: disable=too-few-public-methods
 
         self.marked_image = output_file
         fig.savefig(output_file)
+        print(f"Image saved at {output_file}")

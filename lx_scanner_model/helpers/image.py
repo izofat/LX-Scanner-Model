@@ -19,7 +19,7 @@ class ImageHelper:
         """
         Displays the marked image
         """
-        with Image.open(self.marker.image) as img:
+        with Image.open(self.marker.marked_image) as img:
             img.show()
 
     @property

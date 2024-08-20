@@ -1,5 +1,13 @@
 SHELL := /bin/bash
-PROJECT_NAME := "LX-Scanner-Model"
+PROJECT_NAME := LX-Scanner-API
+CURDIR := $(shell pwd)
+PATH_IMAGE ?= $(CURDIR)/tests/data/testocr.png
+LANGUAGE_IMAGE ?= en
+
+POETRY := ~/.local/bin/poetry
+
+launch:
+	@poetry run lx-scanner-model
 
 install:
 	@poetry install
@@ -20,5 +28,6 @@ lint:
 	@poetry run pylint tests
 	@poetry run bandit -r lx_scanner_model
 
-launch:
-	@poetry run lx-scanner-model
+test:
+	@echo $(PATH) $(LANG)
+	@$(POETRY) run lx-scanner-model-test -p "$(PATH_IMAGE)" -l "$(LANGUAGE_IMAGE)"
