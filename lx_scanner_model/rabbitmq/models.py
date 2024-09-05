@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 
 class RabbitMQInput(BaseModel):
-    image: Union[str, Path]
+    image_path: Union[str, Path]
     lang_list: List[str]
 
 

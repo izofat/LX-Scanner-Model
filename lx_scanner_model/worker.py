@@ -24,7 +24,7 @@ class Worker:
         model_input = json.loads(body)
         mq_input = RabbitMQInput(**model_input)
 
-        self.process(mq_input.image, mq_input.lang_list, ch, method)
+        self.process(mq_input.image_path, mq_input.lang_list, ch, method)
 
     def process(self, image, lang_list_image, ch: Channel, method):
         try:
