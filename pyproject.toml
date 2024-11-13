@@ -11,9 +11,10 @@ lx-scanner-model-test = "tests.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-torch = "^2.4.0+cpu"
-torchvision = "^0.19.0+cpu"
-torchaudio = "^2.4.0+cpu"
+torch = "^2.2.0+cpu"
+torchvision = "^0.17.0+cpu"
+torchaudio = "^2.2.0+cpu"
+numpy = "^1.26.4"
 easyocr = "^1.7.1"
 mypy = "^1.11.0"
 autoflake = "^2.3.1"
