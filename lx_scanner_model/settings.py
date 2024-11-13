@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 
 import toml
@@ -7,7 +8,9 @@ config = toml.load("./config.toml")
 
 DEBUG = get(config, "debug", True)
 
-OUTPUT_DIR = get(config, "output_file_path", "~/LX-Scanner/output")
+
+output_folder = get(config, "output_file_path")
+OUTPUT_DIR = os.path.expanduser(output_folder)
 
 INPUT_QUEUE = get(config, "rabbitmq.input_queue", "model-input")
 OUTPUT_QUEUE = get(config, "rabbitmq.output_queue", "model-output")
