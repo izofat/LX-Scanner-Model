@@ -30,7 +30,7 @@ class RabbitMQConnection:
         )
         self._channel = self._connection.channel()
 
-        self._channel.queue_declare(queue=self._queue_name)
+        self._channel.queue_declare(queue=self._queue_name, durable=True)
 
         Logger.info("Connection %s established", self._queue_name)
 
