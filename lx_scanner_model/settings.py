@@ -7,7 +7,7 @@ config = toml.load("./config.toml")
 
 DEBUG = get(config, "debug", True)
 
-OUTPUT_DIR = get(config, "output_file_path", "/srv/LX-Scanner/output")
+OUTPUT_DIR = get(config, "output_file_path", "~/LX-Scanner/output")
 
 INPUT_QUEUE = get(config, "rabbitmq.input_queue", "model-input")
 OUTPUT_QUEUE = get(config, "rabbitmq.output_queue", "model-output")
