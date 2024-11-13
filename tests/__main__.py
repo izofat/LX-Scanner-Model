@@ -1,6 +1,7 @@
 import argparse
 
 from lx_scanner_model.ai_model.pretrained import OpticalCharacterRecognition
+from lx_scanner_model.logger import Logger
 
 
 def main():
@@ -16,5 +17,5 @@ def main():
     args = parser.parse_args()
 
     ocr_model = OpticalCharacterRecognition(args.path, args.lang)
-    print(ocr_model.output.text)
+    Logger.info(ocr_model.output.text)
     ocr_model.image_helper.display_image()

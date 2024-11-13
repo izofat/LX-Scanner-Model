@@ -4,6 +4,7 @@ from typing import Optional
 from pika.channel import Channel
 
 from lx_scanner_model.ai_model.pretrained import OpticalCharacterRecognition
+from lx_scanner_model.logger import Logger
 from lx_scanner_model.rabbitmq.consumer import RabbitMQConsumer
 from lx_scanner_model.rabbitmq.models import RabbitMQInput, RabbitMQOutput
 from lx_scanner_model.rabbitmq.publisher import RabbitMQPublisher
@@ -16,7 +17,7 @@ class Worker:
     publisher = RabbitMQPublisher(OUTPUT_QUEUE)
 
     def launch(self):
-        print("Worker is running")
+        Logger.info("Worker is running")
         self.consumer.connect()
         self.consumer.start_consuming(self.callback)
 

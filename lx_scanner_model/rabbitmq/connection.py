@@ -2,7 +2,8 @@ from typing import Optional
 
 import pika
 
-from ..settings import RabbitMQConfig
+from lx_scanner_model.logger import Logger
+from lx_scanner_model.settings import RabbitMQConfig
 
 
 class RabbitMQConnection:
@@ -31,12 +32,12 @@ class RabbitMQConnection:
 
         self._channel.queue_declare(queue=self._queue_name)
 
-        print(f"Connection {self._queue_name} established")
+        Logger.info("Connection %s established", self._queue_name)
 
     def close(self):
         if self._connection.is_open:
             self._connection.close()
-            print("RabbitMQ Connection Closed")
+            Logger.info("RabbitMQ Connection Closed")
 
     def publish_message(self, message):
         self._channel.basic_publish(
@@ -44,7 +45,7 @@ class RabbitMQConnection:
             routing_key=self._queue_name,
             body=message,
         )
-        print(f"Message published to {self._queue_name}")
+        Logger.info("Message published to %s", self._queue_name)
 
     def consume(self, callback):
         self._channel.basic_consume(
@@ -52,5 +53,5 @@ class RabbitMQConnection:
             on_message_callback=callback,
             auto_ack=True,
         )
-        print(f"Consuming from {self._queue_name}")
+        Logger.info("Consuming from %s", self._queue_name)
         self._channel.start_consuming()

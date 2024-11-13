@@ -1,6 +1,7 @@
 import os
 import subprocess
 
+from lx_scanner_model.logger import Logger
 from lx_scanner_model.settings import OUTPUT_DIR
 from lx_scanner_model.worker import Worker
 
@@ -18,9 +19,10 @@ def make_output_directory():
     try:
         os.makedirs(OUTPUT_DIR)
     except PermissionError:
-        print(
+        Logger.info(
             "Permission denied: Unable to create directory"
-            f" '{OUTPUT_DIR}'. Attempting to use sudo."
+            " '%s'. Attempting to use sudo.",
+            OUTPUT_DIR,
         )
         result = subprocess.run(["sudo", "mkdir", "-p", OUTPUT_DIR], check=True)
         if result.returncode == 0:
@@ -28,6 +30,6 @@ def make_output_directory():
                 ["sudo", "chown", f"{os.getlogin()}:{os.getlogin()}", OUTPUT_DIR],
                 check=True,
             )
-            print(f"Directory '{OUTPUT_DIR}' created with sudo.")
+            Logger.info("Directory '%s' created with sudo.", OUTPUT_DIR)
         else:
-            print("Failed to create directory even with sudo.")
+            Logger.info("Failed to create directory even with sudo.")
